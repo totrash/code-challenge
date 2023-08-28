@@ -3,13 +3,13 @@
 To run specs:
 
  `bundle install`
- 
+
  `rspec`
 
  ## Explanation
 
  Solution allows to use json schema [standard](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-01) to create schema for expected results
- This allow for easy validation of results in specs with json-schema gem
+ This allows for easy validation of results in specs with json-schema gem
 
  ### Weaknesses
 
