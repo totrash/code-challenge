@@ -3,6 +3,7 @@
 To run specs:
 
  `bundle install`
+ 
  `rspec`
 
  ## Explanation
