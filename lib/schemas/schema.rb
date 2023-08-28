@@ -14,8 +14,6 @@ module Schemas
       type = config['type'] || config['anyOf']&.first&.[]('type')
       const_name = "Schemas::#{Utils.classify(type)}"
       Utils.constantize(const_name).new(config, parent_doc)
-    rescue StandardError
-      binding.pry
     end
 
     def initialize(config, parent_doc)

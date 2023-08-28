@@ -2,9 +2,6 @@
 
 require 'json-schema'
 
-TEST_FILE_PATH = File.join(File.expand_path('..', __dir__), 'files', 'van-gogh-paintings.html')
-RESULTS_FILE_PATH = File.join(File.expand_path('..', __dir__), 'files', 'expected-array.json')
-
 describe 'extract google results artworks' do
   describe 'extract van-gogh artworks paintings' do
     before :all do
