@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
+require 'json'
 require 'bundler/setup'
 Bundler.setup
-
-require 'pry-byebug'
-require 'awesome_print'
-require 'json'
 
 require_relative 'lib/schemas/object'
 require_relative 'lib/schemas/array'
