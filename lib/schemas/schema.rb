@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 require_relative '../schemas'
 require_relative 'config'
-
 
 module Schemas
   class Schema
@@ -10,10 +11,10 @@ module Schemas
     attr_reader :template, :parent_doc, :properties, :items
 
     def self.build(config, parent_doc)
-      type = config['type'] || config['anyOf']&.first['type']
+      type = config['type'] || config['anyOf']&.first&.[]('type')
       const_name = "Schemas::#{Utils.classify(type)}"
       Utils.constantize(const_name).new(config, parent_doc)
-    rescue
+    rescue StandardError
       binding.pry
     end
 
@@ -26,8 +27,7 @@ module Schemas
       @parent_doc
     end
 
-    def extract      
-    end
+    def extract; end
 
     def_delegators :@config, :type, :template, :properties, :items
   end

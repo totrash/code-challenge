@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Schemas
   class Config
     def initialize(config)

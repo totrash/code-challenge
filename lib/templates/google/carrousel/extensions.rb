@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_relative '../carrousel'
 
 module Templates
   module Google
     module Carrousel
-      module Extensions        
+      module Extensions
         XPATH = '(./div[last()]/div)[position() > 1]'
         SKIP_EMPTY = true
       end

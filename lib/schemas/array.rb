@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'schema'
 
 module Schemas
@@ -9,7 +11,7 @@ module Schemas
           add(Schema.build(items, item_doc).extract)
         end
       else
-         # TODO remove nokogiri from schema logic
+        # TODO: remove nokogiri from schema logic
         doc.xpath(template::XPATH).map(&:text)
       end
       @result
@@ -17,7 +19,7 @@ module Schemas
 
     def add(extracted)
       @result << extracted
-    end    
+    end
 
     private
 

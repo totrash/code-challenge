@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Utils
   def camelize(input)
     input.split(/[\s_]/).map(&:capitalize).join
   end
 
   def classify(input)
-    camelize(input).sub(/^(.)/) { $1.upcase }
+    camelize(input).sub(/^(.)/) { ::Regexp.last_match(1).upcase }
   end
 
   def constantize(class_name)
