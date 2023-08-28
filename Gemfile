@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-
 gem 'nokogiri'
 
 group :test do
@@ -7,6 +6,8 @@ group :test do
 end
 
 group :test, :development do
-  gem "pry-byebug"
-  gem "awesome_print"
+  gem "pry-byebug", require: true
+  gem "awesome_print", require: true
+  gem 'rubocop'
+  gem 'json-schema'
 end

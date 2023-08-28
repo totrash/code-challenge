@@ -1,28 +1,28 @@
-# Extract Van Gogh Paintings Code Challenge
-
-Goal is to extract a list of Van Gogh paintings from the attached Google search results page.
-
-![Van Gogh paintings](https://github.com/serpapi/code-challenge/blob/master/files/van-gogh-paintings.png?raw=true "Van Gogh paintings")
-
 ## Instructions
 
-This is already fully supported on SerpApi. ([relevant test], [html file], [sample json], and [expected array].)
-Try to come up with your own solution and your own test.
-Extract the painting `name`, `extensions` array (date), and Google `link` in an array.
+To run specs:
 
-Fork this repository and make a PR when ready.
+ `bundle install`
+ `rspec`
 
-Programming language wise, Ruby (with RSpec tests) is strongly suggested but feel free to use whatever you feel like.
+ ## Explanation
 
-Parse directly the HTML result page ([html file]) in this repository. No extra HTTP requests should be needed for anything.
+ Solution allows to use json schema [standard](https://datatracker.ietf.org/doc/html/draft-wright-json-schema-01)to create schema for expected results
+ This allow for easy validation of results in specs with json-schema gem
 
-[relevant test]: https://github.com/serpapi/test-knowledge-graph-desktop/blob/master/spec/knowledge_graph_claude_monet_paintings_spec.rb
-[sample json]: https://raw.githubusercontent.com/serpapi/code-challenge/master/files/van-gogh-paintings.json
-[html file]: https://raw.githubusercontent.com/serpapi/code-challenge/master/files/van-gogh-paintings.html
-[expected array]: https://raw.githubusercontent.com/serpapi/code-challenge/master/files/expected-array.json
+ ### Weaknesses
 
-Add also to your array the painting thumbnails present in the result page file (not the ones where extra requests are needed). 
+1. It require to download images from google server (Right now in synchronous way)
+- We can use some parallelism (forks, faraday gem e.t.c)
+- We can use capybara to execute javascript (javascript will fill image src with base64 value without external request) (Recommended)
+- We can write js script parser to extract base64 images.
 
-Test against 2 other similar result pages to make sure it works against different layouts. (Pages that contain the same kind of carrousel. Don't necessarily have to be paintings.)
+2. Html structure changes
+- Remove carousel element xpath and make it more generic (ex. div including img and text) component template definition (there is no carrousel element in the new google search page )
 
-The suggested time for this challenge is 4 hours. But, you can take your time and work more on it if you want.
+3. Code refactoring
+- Remove nokogiri related parsing from schema objects as it will allow to write custom parser for example using [ox gem](https://github.com/ohler55/ox)
+- Write more specs
+
+4. Extend JSON Schema usage
+- use 'required' attribute instead of hardcoded values 
